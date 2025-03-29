@@ -14,9 +14,6 @@ const LoginRegister = () => {
         setAction('');
     };
 
-   
-
-
 
   return (
     <div className={`wrapper${action}`}>
