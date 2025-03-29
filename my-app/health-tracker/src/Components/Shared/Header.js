@@ -5,7 +5,7 @@ import './Header.css'; // Importing CSS
 const Header = () => {
   return (
     <header className="header">
-      <h1 className="logo">Health Tracker</h1>
+      <h1 className="logo">Ht</h1>
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
