@@ -7,20 +7,19 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-} from "recharts"; // Importing recharts components
+} from "recharts"; 
 import "./Homepage.css";
 
 const Homepage = () => {
   const [steps, setSteps] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState(""); // New state for username
-  const [weight, setWeight] = useState(""); // State for weight input
-  const [height, setHeight] = useState(""); // State for height input
-  const [bmi, setBmi] = useState(null); // State for BMI
+  const [userName, setUserName] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [bmi, setBmi] = useState(null);
   const navigate = useNavigate();
 
-  // Example meal data for the LineChart
   const mealData = [
     { name: "Salad", value: 50 },
     { name: "Juice", value: 80 },
@@ -33,14 +32,12 @@ const Homepage = () => {
     if (loggedInStatus === "true") {
       setIsLoggedIn(true);
 
-      // Retrieve username from localStorage
       const storedUserName = localStorage.getItem("username");
       if (storedUserName) {
-        setUserName(storedUserName); // Set the username if available
+        setUserName(storedUserName);
       }
     }
 
-    // Load stored steps for the selected date
     const storedSteps = localStorage.getItem(`${selectedDate}-steps`) || 0;
     setSteps(Number(storedSteps));
   }, [selectedDate]);
@@ -48,21 +45,20 @@ const Homepage = () => {
   const incrementSteps = () => {
     const newSteps = steps + 1;
     setSteps(newSteps);
-    localStorage.setItem(`${selectedDate}-steps`, newSteps); // Save to localStorage with selected date
+    localStorage.setItem(`${selectedDate}-steps`, newSteps);
   };
 
   const decrementSteps = () => {
     if (steps > 0) {
       const newSteps = steps - 1;
       setSteps(newSteps);
-      localStorage.setItem(`${selectedDate}-steps`, newSteps); // Save to localStorage with selected date
+      localStorage.setItem(`${selectedDate}-steps`, newSteps);
     }
   };
 
   const handleDateChange = (event) => {
     const date = event.target.value;
     setSelectedDate(date);
-    // Load steps for the selected date
     const storedSteps = localStorage.getItem(`${date}-steps`) || 0;
     setSteps(Number(storedSteps));
   };
@@ -71,17 +67,16 @@ const Homepage = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("username");
     setIsLoggedIn(false);
-    setUserName(""); // Clear username when logged out
-    navigate("/"); // Redirect to homepage after logout
+    setUserName("");
+    navigate("/");
   };
 
-  // Function to calculate BMI
   const calculateBmi = (e) => {
     e.preventDefault();
     if (weight && height) {
-      const heightInMeters = height / 100; // Convert height to meters
+      const heightInMeters = height / 100;
       const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(2);
-      setBmi(bmiValue); // Set the calculated BMI value
+      setBmi(bmiValue);
     } else {
       alert("Please enter both weight and height.");
     }
@@ -95,7 +90,7 @@ const Homepage = () => {
             {/* Profile Card */}
             <div className="card">
               <h3>Profile</h3>
-              <p>Hello, {userName || "Jane"}</p> {/* Dynamically show username */}
+              <p>Hello, {userName || "Jane"}</p>
               <p>Today it’s a great day to be fit!</p>
             </div>
 

@@ -13,11 +13,18 @@
   overflow-x: hidden;
 }
 
-/* Title Style */
-h2 {
+/* Health Information for Logged-Out User */
+.health-info {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
   text-align: center;
-  color: #e53935;
-  margin-bottom: 20px;
+}
+
+.health-info p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2F855A;
 }
 
 /* Dashboard Layout */
@@ -26,20 +33,32 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
-  flex-grow: 1; /* Allow the dashboard to expand vertically */
+  flex-grow: 1; /* Ensure the dashboard grows */
+  margin-top: 20px; /* Added margin for better spacing */
+  width: 100%; /* Make sure it stretches to fill the parent container */
 }
 
 /* Each Card */
 .card {
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for raised effect */
   padding: 20px;
   text-align: center;
   color: #333;
   width: 45%;
   min-width: 250px;
   box-sizing: border-box;
+  height: auto; /* Set height to auto to allow flexible card sizing */
+  max-height: 400px; /* Set a max height for the cards */
+  overflow-y: auto; /* Enable vertical scroll if the content overflows */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Card Hover Effect */
+.card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Darker, more pronounced shadow on hover */
+  transform: translateY(-5px); /* Slight raise effect on hover */
 }
 
 /* Card Headers */
@@ -53,69 +72,65 @@ h2 {
   color: #555;
 }
 
-/* Buttons in the Card */
-.card button {
-  padding: 10px 20px;
-  background-color: #e53935;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background-color 0.3s;
-}
-
-.card button:hover {
-  background-color: #d32f2f;
-}
-
-/* Steps Card Buttons */
-.step-buttons button {
-  padding: 10px 20px;
-  background-color: #2F855A;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-.step-buttons button:hover {
-  background-color: #276749;
-}
-
-/* Meal Statistics Card */
-.card.meal-statistics {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-/* Date Selector */
 .card input[type="date"] {
-  margin-top: 10px;
+  margin-top: 5px; /* Reduced space above date */
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 80%; /* Reduced width of date input */
 }
 
-/* Progress Bar Styles */
-.progress-bar {
-  width: 100%;
-  background-color: #f3f3f3;
-  border-radius: 5px;
-  margin: 10px 0;
-  height: 20px;
+/* BMI Form Styling */
+.bmi-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%; /* Reduced width */
+  margin: 0 auto;
 }
 
-.progress {
-  height: 100%;
-  background-color: #2F855A;
+.bmi-card form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bmi-card form label {
+  font-size: 1rem;
+  color: #555;
+  width: 40%; /* Make labels more compact */
+}
+
+.bmi-card form input {
+  font-size: 1rem;
+  padding: 10px;
   border-radius: 5px;
+  width: 55%; /* Reduced width */
+  border: 1px solid #ccc;
+}
+
+.bmi-card form button {
+  background-color: #e53935;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 50%; /* Make button smaller */
+  margin: 10px auto;
+}
+
+.bmi-card .bmi-result {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.bmi-card .bmi-result h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 /* Login Prompt */
@@ -126,7 +141,6 @@ h2 {
   align-items: center;
   text-align: center;
   margin-top: 50px;
-  padding: 20px;
 }
 
 .login-prompt h1 {
@@ -142,20 +156,6 @@ h2 {
   text-decoration: underline;
 }
 
-/* Health Information for Logged-Out User */
-.health-info {
-  font-size: 18px;
-  color: #333;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.health-info p {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2F855A;
-}
-
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .dashboard {
@@ -168,77 +168,7 @@ h2 {
     margin-bottom: 20px;
   }
 
-  .card button {
-    width: 100%;
-  }
-
-  .step-buttons button {
+  .card input[type="date"] {
     width: 100%;
   }
 }
-
-.bmi-card {
-  background-color: #f8f8f8;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.bmi-card form {
-  display: flex;
-  flex-direction: column;
-}
-
-.bmi-card form div {
-  margin-bottom: 15px;
-}
-
-.bmi-card form input {
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.bmi-card form button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.bmi-card form button:hover {
-  background-color: #0056b3;
-}
-
-.bmi-result {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.bmi-result h4 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.bmi-result p {
-  font-size: 16px;
-  color: #333;
-}
-
-/* Remove the Banner Image */
-
-
-/* Centered Content */
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-}
-
