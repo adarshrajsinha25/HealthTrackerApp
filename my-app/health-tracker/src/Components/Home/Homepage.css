@@ -6,22 +6,11 @@
   background-color: #f7fafc;
   font-family: Arial, sans-serif;
   padding: 20px;
-  width: 100%; /* Take up full width */
-  max-width: 1200px; /* Set max-width to ensure it doesn't stretch too far */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
-}
-
-/* Header Banner */
-.header-banner {
-  background-color: #e53935; /* A red banner */
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  overflow-x: hidden;
 }
 
 /* Title Style */
@@ -31,42 +20,32 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Dashboard Layout - Two Cards Horizontally Aligned */
+/* Dashboard Layout */
 .dashboard {
   display: flex;
-  justify-content: space-between; /* Space between the two cards */
-  gap: 20px; /* Equal distance between cards */
-  margin-top: 20px;
-  width: 100%;
-  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  flex-grow: 1; /* Allow the dashboard to expand vertically */
 }
 
+/* Each Card */
 .card {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   color: #333;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; /* Center content horizontally and vertically */
-  width: 45%; /* Ensure cards take equal width */
+  width: 45%;
+  min-width: 250px;
   box-sizing: border-box;
-  min-width: 250px; /* Ensure cards don't get too small */
-  margin-bottom: 20px; /* Add some space at the bottom for mobile responsiveness */
 }
 
+/* Card Headers */
 .card h3 {
   color: #e53935;
   margin-bottom: 10px;
-}
-
-.card h4 {
-  font-size: 1rem;
-  color: #666;
 }
 
 .card p {
@@ -74,6 +53,7 @@ h2 {
   color: #555;
 }
 
+/* Buttons in the Card */
 .card button {
   padding: 10px 20px;
   background-color: #e53935;
@@ -89,117 +69,176 @@ h2 {
   background-color: #d32f2f;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  width: 20%;
-  background-color: #2f855a;
+/* Steps Card Buttons */
+.step-buttons button {
+  padding: 10px 20px;
+  background-color: #2F855A;
   color: white;
-  padding: 20px;
-  position: fixed;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.sidebar h2 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.sidebar nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar nav ul li {
-  padding: 10px 0;
-  font-size: 18px;
-}
-
-.sidebar nav ul li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
-/* Main Content Styles */
-.main-content {
-  margin-left: 25%; /* To account for the sidebar width */
-  padding: 20px;
+.step-buttons button:hover {
+  background-color: #276749;
+}
+
+/* Meal Statistics Card */
+.card.meal-statistics {
   background-color: white;
-  margin-top: 20px;
-  box-sizing: border-box;
-  width: 100%; /* Ensure it takes full width of its container */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Header Section */
-.header {
+/* Date Selector */
+.card input[type="date"] {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin: 10px 0;
+  height: 20px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #2F855A;
+  border-radius: 5px;
+}
+
+/* Login Prompt */
+.login-prompt {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header h2 {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.header p {
-  color: #6b7280;
-  font-size: 16px;
-}
-
-/* Footer Section */
-.footer {
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  margin-top: 50px;
   padding: 20px;
-  background-color: #2f855a;
-  color: white;
+}
+
+.login-prompt h1 {
+  color: #e53935;
+}
+
+.login-prompt a {
+  color: #2F855A;
+  text-decoration: none;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* Health Information for Logged-Out User */
+.health-info {
+  font-size: 18px;
+  color: #333;
   margin-top: 20px;
   text-align: center;
-  box-sizing: border-box;
+}
+
+.health-info p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2F855A;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .homepage {
-    flex-direction: column;
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .sidebar {
-    width: 100%;
-    padding: 10px;
-    position: relative;
-  }
-
-  .main-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 10px;
-  }
-
   .dashboard {
-    flex-direction: column; /* Stack cards vertically on small screens */
+    flex-direction: column;
+    align-items: center;
   }
 
   .card {
     width: 100%;
-    padding: 20px;
     margin-bottom: 20px;
   }
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  .card button {
+    width: 100%;
   }
 
-  .footer {
-    flex-direction: column;
-    justify-content: center;
+  .step-buttons button {
+    width: 100%;
   }
 }
+
+.bmi-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.bmi-card form div {
+  margin-bottom: 15px;
+}
+
+.bmi-card form input {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.bmi-card form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bmi-card form button:hover {
+  background-color: #0056b3;
+}
+
+.bmi-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.bmi-result h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bmi-result p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Remove the Banner Image */
+
+
+/* Centered Content */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+

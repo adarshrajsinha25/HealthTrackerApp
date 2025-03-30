@@ -32,4 +32,20 @@
   .header nav ul li a:hover {
     text-decoration: underline;
   }
+  .health-paragraph {
+    font-family: 'Arial', sans-serif; /* Change to your desired font */
+    font-size: 18px; /* Adjust font size */
+    color: #333; /* Dark text color */
+    line-height: 1.5; /* Adjust line height */
+    font-weight: bold; /* Make text bold if desired */
+    text-align: center; /* Center the text */
+    margin-top: 20px;
+  }
+  
+  /* You can also add other font styles like a Google Font */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  
+  .health-paragraph {
+    font-family: 'Roboto', sans-serif;
+  }
   
