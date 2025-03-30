@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link for routing
 import {
   LineChart,
   Line,
@@ -7,19 +7,20 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-} from "recharts"; 
+} from "recharts"; // Importing recharts components
 import "./Homepage.css";
 
 const Homepage = () => {
   const [steps, setSteps] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [bmi, setBmi] = useState(null);
+  const [userName, setUserName] = useState(""); // New state for username
+  const [weight, setWeight] = useState(""); // State for weight input
+  const [height, setHeight] = useState(""); // State for height input
+  const [bmi, setBmi] = useState(null); // State for BMI
   const navigate = useNavigate();
 
+  // Example meal data for the LineChart
   const mealData = [
     { name: "Salad", value: 50 },
     { name: "Juice", value: 80 },
@@ -32,12 +33,14 @@ const Homepage = () => {
     if (loggedInStatus === "true") {
       setIsLoggedIn(true);
 
+      // Retrieve username from localStorage
       const storedUserName = localStorage.getItem("username");
       if (storedUserName) {
-        setUserName(storedUserName);
+        setUserName(storedUserName); // Set the username if available
       }
     }
 
+    // Load stored steps for the selected date
     const storedSteps = localStorage.getItem(`${selectedDate}-steps`) || 0;
     setSteps(Number(storedSteps));
   }, [selectedDate]);
@@ -45,20 +48,21 @@ const Homepage = () => {
   const incrementSteps = () => {
     const newSteps = steps + 1;
     setSteps(newSteps);
-    localStorage.setItem(`${selectedDate}-steps`, newSteps);
+    localStorage.setItem(`${selectedDate}-steps`, newSteps); // Save to localStorage with selected date
   };
 
   const decrementSteps = () => {
     if (steps > 0) {
       const newSteps = steps - 1;
       setSteps(newSteps);
-      localStorage.setItem(`${selectedDate}-steps`, newSteps);
+      localStorage.setItem(`${selectedDate}-steps`, newSteps); // Save to localStorage with selected date
     }
   };
 
   const handleDateChange = (event) => {
     const date = event.target.value;
     setSelectedDate(date);
+    // Load steps for the selected date
     const storedSteps = localStorage.getItem(`${date}-steps`) || 0;
     setSteps(Number(storedSteps));
   };
@@ -67,16 +71,17 @@ const Homepage = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("username");
     setIsLoggedIn(false);
-    setUserName("");
-    navigate("/");
+    setUserName(""); // Clear username when logged out
+    navigate("/"); // Redirect to homepage after logout
   };
 
+  // Function to calculate BMI
   const calculateBmi = (e) => {
     e.preventDefault();
     if (weight && height) {
-      const heightInMeters = height / 100;
+      const heightInMeters = height / 100; // Convert height to meters
       const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(2);
-      setBmi(bmiValue);
+      setBmi(bmiValue); // Set the calculated BMI value
     } else {
       alert("Please enter both weight and height.");
     }
@@ -90,7 +95,7 @@ const Homepage = () => {
             {/* Profile Card */}
             <div className="card">
               <h3>Profile</h3>
-              <p>Hello, {userName || "Jane"}</p>
+              <p>Hello, {userName || "Jane"}</p> {/* Dynamically show username */}
               <p>Today it’s a great day to be fit!</p>
             </div>
 
@@ -213,7 +218,7 @@ const Homepage = () => {
             <h3>Please log in first</h3>
             <p>
               You must be logged in to view this content.{" "}
-              <a href="/login">Login here</a>
+              <Link to="/login">Login here</Link> {/* Added Link for routing */}
             </p>
 
             {/* Health Tips Section for Logged-Out Users */}

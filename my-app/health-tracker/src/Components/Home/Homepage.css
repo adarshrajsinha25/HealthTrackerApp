@@ -24,7 +24,7 @@
 .health-info p {
   font-size: 20px;
   font-weight: bold;
-  color: #2F855A;
+  color:  #4b43de;
 }
 
 /* Dashboard Layout */
@@ -63,7 +63,7 @@
 
 /* Card Headers */
 .card h3 {
-  color: #e53935;
+  color:  #4b43de;
   margin-bottom: 10px;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .bmi-card form button {
-  background-color: #e53935;
+  background-color:  #4b43de;
   color: white;
   padding: 10px;
   border: none;
@@ -133,6 +133,16 @@
   font-weight: bold;
 }
 
+/* Health Tips Styling */
+.health-tips {
+  font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
+  color:  #4b43de; /* Changed color to match theme */
+  font-size: 1.2rem; /* Adjusted font size */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f1faf6; /* Light background */
+}
+
 /* Login Prompt */
 .login-prompt {
   display: flex;
@@ -144,11 +154,11 @@
 }
 
 .login-prompt h1 {
-  color: #e53935;
+  color: #4b43de;
 }
 
 .login-prompt a {
-  color: #2F855A;
+  color: #4b43de;
   text-decoration: none;
 }
 
@@ -172,3 +182,6 @@
     width: 100%;
   }
 }
+
+/* Importing Google Font - Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
